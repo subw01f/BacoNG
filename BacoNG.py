@@ -1,8 +1,9 @@
 from art import *
 from PIL import Image
 import numpy
-import binaryCode as binary
+import encode_auxil as binary
 import math
+import os
 
 menu_options = {
 	1: 'Prepare Your Image',
@@ -14,6 +15,7 @@ menu_options = {
 brand = text2art("BacoNG", font="small")
 
 def print_mod():
+	os.system('cls||clear')
 	print(brand)
 
 def print_menu():
@@ -141,7 +143,7 @@ if __name__=='__main__':
 		elif option == 3:
 			option3()
 		elif option == 4:
-			print('Off you trot then!')
+			print('Cya!')
 			exit()
 		else:
 			print('Invalid option. Please enter a number between 1 and 4.')
