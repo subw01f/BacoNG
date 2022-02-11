@@ -29,6 +29,8 @@ def option1():
 	array = numpy.array(prep_im)
 	print('Height: ', array.shape[0])
 	print('Width: ', array.shape[1])
+	message_length = math.floor(array.shape[1]/7)
+	print('Total Message Length: ', message_length)
 	
 	# Loop 'zero-ing' out the picture
 	for h in range(array.shape[0]):
