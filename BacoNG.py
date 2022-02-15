@@ -24,45 +24,54 @@ def print_menu():
 
 def option1():
 	global image
-	image = input('Please enter the image path:')
-	prep_im = Image.open(image)
-	array = numpy.array(prep_im)
-	print('Height: ', array.shape[0])
-	print('Width: ', array.shape[1])
-	message_length = math.floor(array.shape[1]/7)
-	print('Total Message Length: ', message_length)
-	
-	# Loop 'zero-ing' out the picture
-	for h in range(array.shape[0]):
-		for w in range(array.shape[1]):
-			array[h,w,3] = 255
-	
-	new_im = Image.fromarray(array)
-	new_im.save(image)	
+	try:
+		image = input('Please enter the image path:')
+		prep_im = Image.open(image)
+		array = numpy.array(prep_im)
+		print('Height: ', array.shape[0])
+		print('Width: ', array.shape[1])
+		message_length = math.floor(array.shape[1]/7)
+		print('Total Message Length: ', message_length, 'characters')
+		
+		# Loop 'zero-ing' out the picture
+		for h in range(array.shape[0]):
+			for w in range(array.shape[1]):
+				array[h,w,3] = 255
+		
+		new_im = Image.fromarray(array)
+		new_im.save(image)
+	except FileNotFoundError:
+		print("Could not find file")
+
 
 def option2():
 	global height
 	global width
 	global depth
 	global image
-
-	image = input('Please enter the image path: ')
-	im = Image.open(image)
-	num_array = numpy.array(im)
-	width = num_array.shape[1]
-	userInput = input('Please enter the text to encode: ')
-	message = encode(str(userInput), num_array)
-	#print(message)
-	new_im = Image.fromarray(message)
-	fileName = input('Name of output file: ')
-	new_im.save(fileName)
-	print(fileName, " written!")
+	try:
+		image = input('Please enter the image path: ')
+		im = Image.open(image)
+		num_array = numpy.array(im)
+		width = num_array.shape[1]
+		userInput = input('Please enter the text to encode: ')
+		message = encode(str(userInput), num_array)
+		#print(message)
+		new_im = Image.fromarray(message)
+		fileName = input('Name of output file: ')
+		new_im.save(fileName)
+		print(fileName, " written!")
+	except FileNotFoundError:
+		print("Could not find file")
 
 def option3():
 	global image
-	image = input('Please enter the image path: ')
-	print('Attempting to decode: ', image)
-	print('\n', decode(image), '\n')
+	try:
+		image = input('Please enter the image path: ')
+		print('Attempting to decode: ', image)
+		print('\n', decode(image), '\n')
+	except FileNotFoundError:
+		print("Could not find file")
 
 
 # === Encode Message to Array Function === #

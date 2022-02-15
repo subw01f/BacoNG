@@ -8,7 +8,7 @@ def toBinary(a):
 	for i in a:
 		l.append(ord(i))
 	for i in l:
-		print(i)
+		#print(i)
 		if i == 32:
 			m.append(str("0100000"))
 		elif i == 33:
